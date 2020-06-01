@@ -29,9 +29,7 @@ link_directories(
         ${GLFW_LIBRARY_DIRS}
 )
 
-include_directories("src/include")
+add_subdirectory(glad/)
 
-add_library(glad src/glad.c)
-
-add_executable(hello-graph src/main.cpp)
+add_executable(hello-graph graph/main.cpp)
 target_link_libraries(hello-graph ${GLFW_LIBRARIES} glad)
