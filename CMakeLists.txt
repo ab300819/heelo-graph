@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13.0)
-project(hello-graph CXX)
+project(hello-graph C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -31,10 +31,7 @@ link_directories(
 
 include_directories("src/include")
 
+add_library(glad src/glad.c)
+
 add_executable(hello-graph src/main.cpp)
-target_link_libraries(hello-graph ${GLFW_LIBRARIES})
-
-# add_library(common src/framework/common/base_application.cpp src/framework/common/main.cpp)
-
-# add_executable(ghost src/test/TestApplication.cpp)
-# target_link_libraries(ghost common)
+target_link_libraries(hello-graph ${GLFW_LIBRARIES} glad)
