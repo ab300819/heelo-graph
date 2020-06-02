@@ -42,5 +42,8 @@ endif ()
 
 add_subdirectory(glad/)
 
-add_executable(hello-graph graph/main.cpp)
-target_link_libraries(hello-graph ${GLFW_LIBRARIES} glad)
+add_executable(hello_window_clear "graph/hello_window_clear.cpp")
+target_link_libraries(hello_window_clear ${GLFW_LIBRARIES} glad)
+
+add_executable(hello_triangle_indexed "graph/hello_triangle_indexed.cpp")
+target_link_libraries(hello_triangle_indexed ${GLFW_LIBRARIES} glad)
