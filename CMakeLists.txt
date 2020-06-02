@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.13.0)
 project(hello-graph C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     message(STATUS "Current Platform: ${CMAKE_SYSTEM_NAME}")
@@ -27,13 +26,21 @@ elseif (CMAKE_SYSTEM_NAME MATCHES "Darwin")
             ${GLFW_LIBRARY_DIRS}
     )
 
-    add_subdirectory(glad/)
-
-elseif (CMAKE_SYSTEM_NAME MATCHES "Linux")
+elseif (CMAKE_SYSTEM_NAME MATCHES "Windows")
     message(STATUS "Current Platform: ${CMAKE_SYSTEM_NAME}")
+
+    set(GLFW_PREFIX "C:/Users/mengshen/Documents/source/GLFW")
+    set(glfw3_DIR ${GLFW_PREFIX}/lib/cmake/glfw3)
+    
+    find_package(glfw3 REQUIRED)
+    include_directories(${GLFW_PREFIX}/include)
+    set(GLFW_LIBRARIES glfw)
+
 else ()
     message(STATUS "Unknown Platform")
 endif ()
+
+add_subdirectory(glad/)
 
 add_executable(hello-graph graph/main.cpp)
 target_link_libraries(hello-graph ${GLFW_LIBRARIES} glad)
