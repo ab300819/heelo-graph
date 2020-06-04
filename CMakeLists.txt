@@ -47,3 +47,5 @@ target_link_libraries(hello_window_clear ${GLFW_LIBRARIES} glad)
 
 add_executable(hello_triangle_indexed "graph/hello_triangle_indexed.cpp")
 target_link_libraries(hello_triangle_indexed ${GLFW_LIBRARIES} glad)
+
+add_executable(test "graph/test.cpp")
