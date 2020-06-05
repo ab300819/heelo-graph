@@ -13,7 +13,6 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 int main() {
-
 	// 初始化 GLFW
 	if (glfwInit() == GLFW_FALSE) {
 		std::cout << "Failed to initialize GLFW" << std::endl;
@@ -26,6 +25,7 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 #ifdef __APPLE__
+	// macOS 额外配置
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
@@ -38,11 +38,10 @@ int main() {
 	}
 
 	glfwMakeContextCurrent(window);
-
+	// 当窗口大小改变时，回调函数进行处理
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	// glad: load all OpenGL function pointers
-	// ---------------------------------------
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return EXIT_FAILURE;
@@ -58,7 +57,7 @@ int main() {
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse
 		// moved etc.)
 		// -------------------------------------------------------------------------------
-		glClearColor(0.2f,0.3f,0.3f,1.0f);
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
